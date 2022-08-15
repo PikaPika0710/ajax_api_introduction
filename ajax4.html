@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX - PHP - GET METHOD</title>
+</head>
+
+<body>
+    <button id="button">
+        Get Name
+    </button>
+    <hr>
+    <!-- Normal get from make an http request to get the response-->
+    <h1>GET FORM</h1>
+    <form action="process.php" method="GET">
+        <input type="text" name="name">
+        <input type="submit" value="Submit">
+    </form>
+    <hr>
+    <!-- Ajax get form makes everything behind the scenes -->
+    <h1>AJAX GET FORM</h1>
+    <form id="form">
+        <input type="text" name="name" id="name">
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        document.getElementById("button").addEventListener("click", getName);
+        document.getElementById("form").addEventListener("submit", getName);
+
+        function getName(e) {
+            e.preventDefault();
+
+            var xhr = new XMLHttpRequest();
+            var name = document.getElementById("name").value;
+            xhr.open('GET', 'process.php?name=' + name, true);
+
+            xhr.onload = function() {
+                console.log(xhr.responseText);
+            }
+
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
