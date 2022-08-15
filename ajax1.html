@@ -12,18 +12,54 @@
     <button id="button">
         Get Text File
     </button>
+    <div id="text">
+
+    </div>
     <script>
         document.getElementById("button").addEventListener("click", loadText);
 
         function loadText() {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", 'sample.txt', true);
+            console.log("READY STATE: ", xhr.readyState);
 
             xhr.onload = function() {
+                console.log("READY STATE: ", xhr.readyState);
                 if (this.status == 200) {
-                    console.log(xhr.responseText);
+                    document.getElementById('text').innerHTML = this.responseText;
+                } else if (this.status == 404) {
+                    document.getElementById('text').innerHTML = 'Not Found';
                 }
             }
+
+
+            /* xhr.onprogress = function() {
+                console.log("READY STATE: ", xhr.readyState);
+                if (this.status == 200) {
+                    window.alert("IN PROGRESS");
+                }
+            }
+            */
+
+            /* xhr.onreadystatechange = function() {
+                console.log("READY STATE: ", xhr.readyState);
+                if (this.status == 200 && this.readyState == 4) {
+                    console.log(this.responseText);
+                }
+            };
+            */
+
+            /* xhr.onerror = function() {
+                console.log("REQUEST ERROR....");
+            };
+            */
+
+
+            /*  ONLOAD and ONREADYSTATECHANGE differences:
+                - The function for onload is only called when its ready, it means the ready state
+                is actually 4
+                - But the fuction for onreadystatechange is called every ready state from 1-4
+            */
 
             xhr.send();
         }
