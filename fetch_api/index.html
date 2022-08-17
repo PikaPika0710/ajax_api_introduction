@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Introduction</title>
+    <style lang="">
+        .container {
+            margin: 50px;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #get_text_btn {
+            background-color: rgb(60, 144, 253);
+        }
+
+        #get_users_btn {
+            background-color: rgb(189, 189, 66);
+        }
+
+        #get_posts_btn {
+            background-color: rgb(196, 73, 196);
+        }
+
+        #post_form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            width: 400px;
+            height: 200px;
+            margin: 10px;
+        }
+
+        #title {
+            font-size: 30px;
+        }
+
+        #body {
+            margin-top: 20px;
+
+            font-size: 20px;
+        }
+
+        #submit {
+            background-color: rgb(108, 185, 108);
+            padding: 5px 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>FETCH API INTRODUCTION</h1>
+        <button class="button" id="get_text_btn">Get Text</button>
+        <button class="button" id="get_users_btn">Get Users</button>
+        <button class="button" id="get_posts_btn">Get Posts</button>
+        <form id="post_form">
+            <div>
+                <input type="text" id="title" placeholder="Title">
+            </div>
+            <div>
+                <textarea id="body" placeholder="Body"></textarea>
+            </div>
+            <div>
+                <input type="submit" id="submit">
+            </div>
+        </form>
+        <div id="text">
+        </div>
+    </div>
+    <script>
+        document.getElementById('get_text_btn').addEventListener('click', getText);
+        document.getElementById('get_users_btn').addEventListener('click', getUsers);
+        document.getElementById('get_posts_btn').addEventListener('click', getPosts);
+        document.getElementById('post_form').addEventListener('submit', postPost);
+        function postPost(event) {
+            event.preventDefault();
+            let title = document.getElementById('title').value;
+            let body = document.getElementById('body').value;
+            fetch('https://jsonplaceholder.typicode.com/posts',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        body: body
+                    })
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+        }
+        function getPosts() {
+            fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(res => res.json())
+                .then(data => {
+                    let output = '<h1>POSTS</h1>'
+                    data.forEach(function (post) {
+                        output +=
+                            `<div>
+                            <h2>${post.id} ) ${post.title}</h2>
+                            <p> ${post.body}</p>
+                        </div>`
+                    })
+                    document.getElementById('text').innerHTML = output
+                })
+        }
+        function getUsers() {
+            fetch('users.json')
+                .then(res => res.json())
+                .then(data => {
+                    var output = `<h1>Users</h1>`
+                    data.forEach(function (user) {
+                        output +=
+                            `<ul>
+                                <li> ID: ${user.id}</li>    
+                                <li> Name: ${user.name}</li>    
+                                <li> Email: ${user.email}</li>    
+                            </ul>`
+                    })
+                    document.getElementById('text').innerHTML = output;
+
+                })
+        }
+
+        function getText() {
+            // fetch('sample.txt')
+            //     .then(function (response) {
+            //         return response.text();
+            //     })
+            //     .then(function (data) {
+            //         console.log(data);
+            //     })
+
+            fetch('sample.txt')
+                .then(res => res.text())
+                .then(data => {
+                    console.log(data)
+                    document.getElementById('text').innerHTML = data
+                })
+                .catch(err => console.log(err))
+        };
+
+    </script>
+</body>
+
+</html>
