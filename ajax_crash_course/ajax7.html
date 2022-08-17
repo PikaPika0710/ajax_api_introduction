@@ -13,7 +13,7 @@
             padding: 10px;
             margin-bottom: 10px;
         }
-        
+
         .user img {
             width: 70px;
             height: 70px;
@@ -33,7 +33,7 @@
             xhr.open("GET", 'get_users.php', true);
 
 
-            xhr.onload = function() {
+            xhr.onload = function () {
                 var users = JSON.parse(this.responseText);
                 var output = ''
                 for (var i in users) {
@@ -42,7 +42,7 @@
                         '<ul> ' +
                         '<li>ID: ' + users[i].id + '</li>' +
                         '<li>Name: ' + users[i].name + '</li>' +
-                        ' </ul>' +
+                        '</ul>' +
                         "</div>"
                 }
                 document.getElementById("users").innerHTML = output;

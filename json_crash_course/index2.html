@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON CRASH COURSE</title>
+</head>
+
+<body>
+    <h1>People</h1>
+    <div id="people">
+
+    </div>
+    <script>
+        var people = [
+            {
+                "id": "1",
+                "name": "Tran Viet",
+                "email": "trancongviet0710@gmail.com"
+            },
+            {
+                "id": "2",
+                "name": "Nguyen Pham",
+                "email": "nguyenpham13901@gmail.com"
+            },
+            {
+                "id": "3",
+                "name": "Dinh Gia Bao",
+                "email": "dinhgiabao2807@gmail.com"
+            },
+            {
+                "id": "4",
+                "name": "Hoang Thien",
+                "email": "hoangthien1204@gmail.com"
+            }
+        ]
+        var output = '';
+        people.forEach(function (person) {
+            output +=
+                `
+            <b> ${person.id} </b>
+            <ul>
+                
+                <li> ${person.name} </li>
+                <li> ${person.email} </li>
+            </ul>
+                `
+        })
+        document.getElementById('people').innerHTML = output;
+    </script>
+</body>
+
+</html>
