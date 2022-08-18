@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Crash Course | Selectors </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        header {
+            background: orange;
+            text-align: center;
+            font-size: 30px;
+            padding: 10px;
+            margin: 10px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        JQuery Crash Course
+    </header>
+    <h1 class="heading1">
+        Heading 1
+    </h1>
+    <p id="para1"> Para1 dolor sit amet consectetur adipisicing elit. Est obcaecati, reprehenderit provident, quas
+        magnam voluptates quos harum reiciendis suscipit et sit praesentium. Atque perspiciatis at nihil corrupti
+        doloribus quasi, ipsum repellendus omnis deleniti
+        ad inventore voluptatum voluptatibus <span> span content </span>laboriosam cupiditate amet minima. Ab accusamus
+        voluptas et repellat consectetur molestiae quidem odio.
+    </p>
+    <p class="para1">Para1 ipsum dolor sit amet consectetur adipisicing elit. Quisquam fugiat quod minima porro esse
+        perferendis sequi nostrum maxime, dicta voluptatem maiores in architecto deserunt alias itaque ducimus
+        perspiciatis libero ea!</p>
+
+    <h1 class="heading2">Heading 2</h1>
+    <p id="para2">Para2 ipsum dolor sit amet <span> span content </span> consectetur adipisicing elit. Quisquam fugiat
+        quod minima porro esse perferendis sequi nostrum maxime, dicta voluptatem maiores in architecto deserunt alias
+        itaque ducimus perspiciatis libero
+        ea!
+    </p>
+    <h2 id="heading3">
+        Heading 3
+    </h2>
+    <p class="para3">
+        Para3 ipsum dolor sit amet consectetur adipisicing elit. Et neque aliquid optio ea debitis deserunt reiciendis
+        deleniti nisi recusandae, nostrum rem voluptatibus sunt vitae. Quos provident obcaecati eum cumque non?
+    </p>
+    <span> span content </span>
+
+    <hr>
+    <h1>
+        LIST ITEMS
+    </h1>
+    <ul class="items-list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+    </ul>
+
+    <hr>
+    <h1>FORM</h1>
+    <form action="">
+        <input type="text">
+        <input type="submit" value="Submit" />
+        <input type="button" value="Button" />
+    </form>
+
+    <hr>
+    <h1>Element Attributes </h1>
+    <a href="https://www.google.com">Google</a>
+    <a href="https://www.facebook.com">Facebook</a>
+    <script>
+        // class
+        // $('h1.heading1').hide();
+
+        // id
+        // $('p#para1').hide();
+
+        $('h2').hide();
+
+        // css jquery method
+        $('p span').css('color', 'red');
+
+        $('ul.items-list li').css('font-size', '20px');
+        $('ul.items-list li:first').css('color', 'red');
+        $('ul.items-list li:last').css('color', 'green');
+        $('ul.items-list li:even').css('background-color', 'yellow');
+        $('ul.items-list li:odd').css('background-color', 'blue');
+        $('ul.items-list li:nth-child(3n)').css('list-style', 'none');
+
+        $(':text').css('font-size', '15px').css('padding', '5px');
+        $(':submit').css('border', '3px solid red');
+        // $(':button').hide();
+
+        $('[href]').css('text-decoration', 'none')
+            .css('margin', '10px');
+        $('a[href="https://www.facebook.com"]').css('color', 'red');
+    </script>
+</body>
+
+</html>
