@@ -42,6 +42,26 @@
     <div class="coordinates">
         Coordinates:
     </div>
+
+    <hr>
+    <h1>Form</h1>
+    <form action="" class="form">
+        <label for="name">Name: </label>
+        <input type="text" id="name">
+        <br><br>
+        <label for="email">Email: </label>
+        <input type="text" id="email">
+        <br><br>
+        <label for="gender">Gender: </label>
+        <select name="" id="gender">
+            <option value="">Female</option>
+            <option value="">Male</option>
+            <option value="">Other</option>
+        </select>
+        <br><br>
+        <input type="submit" name="submit">
+
+    </form>
 </body>
 
 </html>
@@ -89,19 +109,38 @@
         //     $('.para1').toggle();
         // });
 
-        $('#btn1').on('click', function (e) {
-            console.log(e);
-            console.log(e.target.id);
-            console.log(e.target.innerHTML);
-            console.log(e.target.outerHTML);
-        });
-
+        // $('#btn1').on('click', function (e) {
+        //     console.log(e);
+        //     console.log(e.target.id);
+        //     console.log(e.target.innerHTML);
+        //     console.log(e.target.outerHTML);
+        // });
 
         $(document).on('mousemove', function (e) {
             $('.coordinates').html(
                 'Coordinates: X: ' + e.screenX + ', Y: ' + e.screenY
             )
         });
+
+        $('input').focus(function () {
+            // $('input').css('background-color', 'pink');
+            $(this).css('background-color', 'pink');
+        });
+        $('input').blur(function () {
+            // $('input').css('background-color', 'pink');
+            $(this).css('background-color', 'white');
+        });
+
+        // $('input').keyup(function (e) {
+        //     console.log(e.target.value);
+        // });
+
+        $('.form').submit(function (e) {
+            e.preventDefault();
+            console.log($('input#name').val());
+            console.log($('input#email').val());
+            console.log($('select#gender').find(':selected').text());
+        })
     })
 
 </script>
