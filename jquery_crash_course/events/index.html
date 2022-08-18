@@ -21,13 +21,7 @@
             margin-bottom: 10px;
         }
     </style>
-    <script>
-        $('document').ready(function () {
-            $('#btn1').click(function () {
-                alert('Button 1 clicked!');
-            })
-        })
-    </script>
+
 </head>
 
 <body>
@@ -38,7 +32,76 @@
         <button id="btn1">Button 1</button>
         <button id="btn2">Button 2</button>
     </div>
+    <p class="para1">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum ipsum laudantium fugiat optio inventore ipsam
+        fugit voluptatem suscipit magnam nemo corrupti, ut nam eos quae. Fuga sapiente nihil quam optio temporibus
+        mollitia adipisci iste qui, quisquam voluptate sed voluptas ad facere labore repellendus. Porro asperiores est,
+        eligendi ad nemo non.
+    </p>
 
+    <div class="coordinates">
+        Coordinates:
+    </div>
 </body>
 
 </html>
+<script>
+    $('document').ready(function () {
+
+        // DIFFERENCES BETWEEN USE ON AND CLICK FUNCTIOn
+
+        // $('#btn1').on('click', function () {
+        //     alert('Button 1 clicked!');
+        // });
+
+        // $('#btn1').click(function () {
+        //     alert('Button 1 clicked!');
+        // });
+
+        // $('#btn1').click(function () {
+        //     $('.para1').hide();
+        //     // $('.para1').toggle();
+        // });
+
+        // $('#btn2').click(function () {
+        //     $('.para1').show();
+        // });
+
+        // $('#btn1').dblclick(function () {
+        //     $('.para1').toggle();
+        // })
+
+        // $('#btn1').on('mouseenter', function () {
+        //     $('.para1').toggle();
+        // });
+        // $('#btn1').on('mouseleave', function () {
+        //     $('.para1').toggle();
+        // });
+
+        // $('#btn1').on('mousemove', function () {
+        //     $('.para1').toggle();
+        // });
+
+        // $('#btn1').on('mousedown', function () {
+        //     $('.para1').toggle();
+        // });
+        // $('#btn1').on('mouseup', function () {
+        //     $('.para1').toggle();
+        // });
+
+        $('#btn1').on('click', function (e) {
+            console.log(e);
+            console.log(e.target.id);
+            console.log(e.target.innerHTML);
+            console.log(e.target.outerHTML);
+        });
+
+
+        $(document).on('mousemove', function (e) {
+            $('.coordinates').html(
+                'Coordinates: X: ' + e.screenX + ', Y: ' + e.screenY
+            )
+        });
+    })
+
+</script>
