@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Crash Course | Selectors </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        header {
+            background: orange;
+            text-align: center;
+            font-size: 30px;
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        $('document').ready(function () {
+            $('#btn1').click(function () {
+                alert('Button 1 clicked!');
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <header>
+        JQuery Crash Course
+    </header>
+    <div id="container">
+        <button id="btn1">Button 1</button>
+        <button id="btn2">Button 2</button>
+    </div>
+
+</body>
+
+</html>
