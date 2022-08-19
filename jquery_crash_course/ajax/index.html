@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Crash Course | Ajax </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        header {
+            background: orange;
+            text-align: center;
+            font-size: 30px;
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        JQuery Crash Course
+    </header>
+    <div id="container">
+        <div id="result">
+
+        </div>
+    </div>
+    <h1>Users </h1>
+    <ul id="users">
+    </ul>
+    <hr>
+    <h1>POST PHOTO FORM</h1>
+    <form action="https://jsonplaceholder.typicode.com/photos" id="post-form">
+        <input type="text" id="albumId">
+        <input type="text" id="title">
+        <input type="text" id="url">
+        <input type="text" id="thumbnailUrl">
+        <input type="submit" id="submit">
+    </form>
+    <h1>Photos </h1>
+    <ul id="photos">
+
+    </ul>
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+        /* $('#result').load('text.html', function (response, status, xhr) {
+            if (status == 'success') {
+                alert('Success!');
+                // alert(response);
+            }
+            else if (status == 'error') {
+                alert('Error! ' + xhr.status);
+            }
+        });
+        */
+
+        // $.get('text.html', function (data) {
+        //     $('#result').html(data);
+        // });
+
+
+        $.getJSON('users.json', function (data) {
+            $.each(data, function (key, user) {
+                $('ul#users').append('<li>' + user.name + '</li>')
+            });
+        });
+
+
+        // $.get('https://jsonplaceholder.typicode.com/photos', function (data) {
+        //     $.each(data, function (key, photo) {
+        //         $('ul#photos').append('<li>' + photo.url + '</li>')
+        //     });
+        // });
+
+        // Make a GET request
+        $.ajax({
+            method: 'GET',
+            url: 'https://jsonplaceholder.typicode.com/photos',
+            dataType: 'json'
+        }).done(function (posts) {
+            $.map(posts, function (post) {
+                $('ul#photos').append(`<h3> ${post.id}</h3><li> ${post.url} </li>`)
+            });
+        })
+
+
+
+        // Make a POST request
+        $('#post-form').submit(function (e) {
+            e.preventDefault();
+            var albumId = $('#albumId').val();
+            var title = $('#title').val();
+            var url = $('#url').val();
+            var thumbnailUrl = $('#thumbnailUrl').val();
+
+            var posts_url = $(this).attr('action');
+            // console.log(albumId, id, title, url, thumbnailUrl);
+            $.post(posts_url, {
+                albumId: albumId, title: title, url: url, thumbnailUrl: thumbnailUrl
+            }).done(function (data) {
+                console.log('Photo saved');
+                console.log(data);
+            }).fail(function (error) {
+                console.log(error);
+            });
+        });
+    });
+</script>
