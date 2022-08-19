@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Crash Course | Selectors </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        header {
+            background: orange;
+            text-align: center;
+            font-size: 30px;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .customClass {
+            color: black;
+            background-color: gray;
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        JQuery Crash Course
+    </header>
+    <div id="container">
+        <button id="btn1">Button</button>
+        <p id="para1">
+            PARA1 ipsum dolor sit amet consectetur adipisicing elit. Tempora dignissimos non ad explicabo delectus
+            obcaecati minima sapiente nemo illum, perspiciatis facere, pariatur odit cumque optio ab aut cum culpa!
+            Voluptatum.
+        </p>
+        <p id="para2">
+            PARA2 ipsum dolor sit amet consectetur adipisicing elit. Modi ad aperiam nesciunt nemo, vel repudiandae cum
+            itaque repellat qui ex!
+        </p>
+        <hr>
+        <div class="myDiv">
+            <div id="div1"></div>
+            <div id="div2"></div>
+        </div>
+        <hr>
+        <h1>List Items</h1>
+        <ul id="list-item">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+        </ul>
+        <hr>
+        <a href="https://www.facebook.com">
+            Facebook
+        </a>
+
+        <a href="https://www.google.com">
+            Google
+        </a>
+
+        <hr>
+        <label for="newItem">New Item: </label>
+        <input type="text" id="newItem">
+
+        <hr>
+        <h1>
+            Users
+        </h1>
+        <ul id="users">
+
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+        $('#para1').css({ color: 'red', fontSize: '20px', fontWeight: 'bold' });
+        $('#para2').addClass('customClass');
+        $('#para2').removeClass('customClass');
+        $("#btn1").on('click', function () {
+            $('#para2').toggleClass('customClass');
+        })
+
+        $('.myDiv').css('text-align', 'center');
+        $('#div1').text('<h1>Hello world</h1>');
+        $('#div2').html('<h1>Hello world</h1>');
+
+        $('#list-item').append('<li>Append Item</li>');
+        $('#list-item').prepend('<li>Prepend Item</li>');
+
+        // para1 will have css of para2
+        $('#para1').appendTo('#para2');
+        $('#para1').prependTo('#para2');
+
+
+        $('ul').before('<h4> BEFORE </h4>');
+        $('ul').after('<h4> AFTER </h4>');
+        // $('ul').empty();
+        // $('ul').detach();
+
+
+        $('a').attr('target', '_blank');
+        // Targer = black will open url in another tab
+        alert($('a').attr('href'));
+        $('a').removeAttr('target');
+
+        // wrap tag in some tag
+        $('a').wrap('<i>');
+        // wrap tags in one tag
+        $('a').wrapAll('<i>');
+
+
+        // get input text and append to list
+        $('#newItem').keyup(function (e) {
+            e.preventDefault();
+            // console.log(e.which);
+            // console.log(e);
+            if (e.key == 'Enter') {
+                var text = $('#newItem').val();
+                $('ul#list-item').append('<li>' + text + '</li>');
+                // console.log(text);
+            }
+        });
+
+        // array
+        var users = ['Viet', 'Bao', 'Huy', 'Thien', 'Nguyen', 'Phong'];
+        users.forEach(function (user) {
+            $('ul#users').append('<li>' + user + '</li>');
+        });
+
+        // $('ul#users').empty();
+        // get array value
+        var users = $('ul#users li').toArray();
+        $.each(users, function (i, user) {
+            console.log(user.innerHTML);
+        });
+
+
+    });
+
+</script>
